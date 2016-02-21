@@ -33,7 +33,7 @@ def get_current_weather(key, zip):
     f.close()
     print result
 
-    # TODO - Change function so that result is returned rather than printed
+    #TODO - Change function so that result is returned rather than printed
 
 def get_forecast(key, zip):
     import urllib2
@@ -49,7 +49,7 @@ def get_forecast(key, zip):
         print "    Low: {0}F".format(day['low']['fahrenheit'])
     f.close()
 
-    # TODO - Change function so that printed statements are turned into a variable and returned
+    #TODO - Change function so that printed statements are turned into a variable and returned
 
 
 if __name__ == '__main__':
@@ -60,3 +60,7 @@ if __name__ == '__main__':
         get_current_weather(key, zip)
     elif mode == "forecast":
         get_forecast(key, zip)
+
+else:
+    # TODO - Add e-mail protocols
+    pass
