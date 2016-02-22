@@ -13,6 +13,7 @@
 import config
 import weatherservice_utils
 import email_utils
+import email_drafting_utils
 import logging
 
 # Establish global variables from config file
@@ -20,7 +21,7 @@ key = config.wunderground_key
 local_zip = config.local_zip
 dev_email = config.dev_email
 dev_email_password = config.dev_email_password
-message_greeting = config.message_greeting
+recipient_email = config.recipient_email
 
 # Get today's forecast
 forecast = weatherservice_utils.get_todayforecast(key, local_zip)
@@ -29,13 +30,7 @@ conditions = forecast[0]
 high = forecast[1]
 low = forecast[2]
 
-def write_morning_email(message_greeting, conditions, high, low):
-	import config
+message_to_email = email_drafting_utils.write_morning_email(conditions, high, low)
+print message_to_email
 
-	# Start message with the greeting
-	message = config.message_greeting
-	message += "\n"
-
-	# Create conditional logic
-	if conditions in config.rain_conditions_text:
-		message += "Better take your umbrella little love! Today's conditions are: {0}".format()
+email_utils.send_email(dev_email, dev_email_password, recipient_email, message_to_email)
