@@ -21,10 +21,10 @@ def write_morning_email(conditions, high, low):
 	# Create weather conditional logic
 	if conditions in config.rain_conditions_text:
 		message += "\tBetter take your umbrella little love! Today's conditions are: {0}\n".format(conditions)
-		message += "\tPlease be careful driving my sweet love."
+		message += "\tPlease be careful driving my sweet love.\n"
 	elif conditions in config.snow_conditions_text:
 		message += "\tPlease bundle up! Today's conditions are: {0}\n".format(conditions)
-		message += "\tPlease be careful driving my sweet love."
+		message += "\tPlease be careful driving my sweet love.\n"
 	else:
 		message += "\tToday's conditions are: {0}\n".format(conditions)
 
