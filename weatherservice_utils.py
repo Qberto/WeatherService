@@ -1,6 +1,7 @@
 #-------------------------------------------------------------------------------
-# Name:        Weather Forecast API Test
-# Purpose:
+# Name:        Weather Services
+# Purpose:     Functions that assist in getting weather reports from weather 
+#              underground's API
 #
 # Author:      Alberto
 #
@@ -29,13 +30,13 @@ def get_current_weather(key, zip):
     feelslike_string = parsed_json['current_observation']['feelslike_string']
 
     # Create result and close the response file
-    result = 'Weather in {0}, {1}: {2}. The acutal temperature is {3} and it feels like {4}.'.format(city, state, weather.lower(), temperature_string, feelslike_string)
+    print('Weather in {0}, {1}: {2}. The actual temperature is {3} and it feels like {4}.'.format(city, state, weather.lower(), temperature_string, feelslike_string))
     f.close()
-    print result
+    return weather, temperature_string, feelslike_string
 
     #TODO - Change function so that result is returned rather than printed
 
-def get_forecast(key, zip):
+def print_tendayforecast(key, zip):
     import urllib2
     import json
     url = 'http://api.wunderground.com/api/{0}/geolookup/forecast10day/q/{1}.json'.format(key, zip)
@@ -49,8 +50,19 @@ def get_forecast(key, zip):
         print "    Low: {0}F".format(day['low']['fahrenheit'])
     f.close()
 
-    #TODO - Change function so that printed statements are turned into a variable and returned
-
+def get_todayforecast(key, zip):
+    import urllib2
+    import json
+    url = 'http://api.wunderground.com/api/{0}/geolookup/forecast10day/q/{1}.json'.format(key, zip)
+    f = urllib2.urlopen(url)
+    json_string = f.read()
+    parsed_json = json.loads(json_string)
+    for day in parsed_json['forecast']['simpleforecast']['forecastday']:
+        conditions = day['conditions']
+        high = day['high']['fahrenheit']
+        low = day['low']['fahrenheit']
+        break
+    return conditions, high, low
 
 if __name__ == '__main__':
     key = '0a3a7926e3b32d4f'
@@ -59,8 +71,4 @@ if __name__ == '__main__':
     if mode == "current":
         get_current_weather(key, zip)
     elif mode == "forecast":
-        get_forecast(key, zip)
-
-else:
-    # TODO - Add e-mail protocols
-    pass
+        get_tendayforecast(key, zip)
