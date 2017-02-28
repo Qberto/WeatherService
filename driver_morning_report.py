@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Name:        morning_report.py
+# Name:        driver_morning_report.py
 # Purpose:     Driver for morning report 
 #              
 #
@@ -11,9 +11,9 @@
 #-------------------------------------------------------------------------------
 
 import config
-import weatherservice_utils
-import email_utils
-import email_drafting_utils
+import utils_weatherservice
+import utils_email
+import utils_messages
 import logging
 
 # Establish global variables from config file
@@ -24,13 +24,13 @@ dev_email_password = config.dev_email_password
 recipient_email = config.recipient_email
 
 # Get today's forecast
-forecast = weatherservice_utils.get_todayforecast(key, local_zip)
+forecast = utils_weatherservice.get_todayforecast(key, local_zip)
 
 conditions = forecast[0]
 high = forecast[1]
 low = forecast[2]
 
-message_to_email = email_drafting_utils.write_morning_email(conditions, high, low)
-print message_to_email
+message_to_email = utils_messages.write_morning_email(conditions, high, low)
+print(message_to_email)
 
-email_utils.send_email(dev_email, dev_email_password, recipient_email, message_to_email)
+utils_email.send_email(dev_email, dev_email_password, recipient_email, message_to_email)

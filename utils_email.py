@@ -38,10 +38,10 @@ if __name__ == "__main__":
 	import getpass
 	
 	# Ask the user for the account, password, recipient email, and message
-	account = raw_input("Your e-mail address: ")
+	account = input("Your e-mail address: ")
 	password = getpass.getpass()
-	recipient_email = raw_input("Recipient e-mail address: ")
-	message = raw_input("Message: ")
+	recipient_email = input("Recipient e-mail address: ")
+	message = input("Message: ")
 
 	# Invoke the send_email function to send the designated message
 	print("Sending your message...")
