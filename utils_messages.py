@@ -31,7 +31,7 @@ def write_morning_email(conditions, high, low):
     message += "\tThe high today will be {0}\n".format(high)
     message += "\tThe low today will be {0}\n".format(low)
 
-    message += "\nPlease don't forget that I love you with all my heart no matter what."
+    message += "\nPlease don't forget that I love you with all my heart."
     message += "\nHave an amazing day!"
     message += "\n\nLove always and forever,\nBerto"
     message += "\n\nPS: If you want me to stop sending you these emails... :(\n... just reply with the message: 'MAD MAX FURY ROAD WAS THE BEST MOVIE OF 2015'... :) "
